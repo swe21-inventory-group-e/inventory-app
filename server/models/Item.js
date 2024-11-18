@@ -14,7 +14,7 @@ Item.init(
       type: DataTypes.FLOAT,
       allowNull: false
     },
-    //category: // TODO: Sort through table
+    category: DataTypes.TEXT 
     image: DataTypes.TEXT
   },
   {
