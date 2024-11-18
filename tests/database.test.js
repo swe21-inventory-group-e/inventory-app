@@ -14,7 +14,9 @@ test.only("The database connection works", async function() {
     expect(answer[0][0].RESULT).toBe(2);
 })
 
-// --- CREATE operations
+// --- CREATE operations ---
+
+// Can create items
 test("Items can be created", async function () {
     const created = await Item.create(/* TODO: Add variables here */);
     const fetched = await Item.findByPk(2);
@@ -22,7 +24,7 @@ test("Items can be created", async function () {
     expect(created).toEqual(/* Other values */);
 })
 
-// --- READ operations
+// --- READ operations --- 
 
 // Check all columns
 test("The database has the correct columns", async function() {
@@ -30,7 +32,7 @@ test("The database has the correct columns", async function() {
     // TODO: Check columns match diagram once created
 })
 
-// --- UPDATE operations
+// --- UPDATE operations --- 
 
 // Check editing works correctly
 test("The database gets edited correctly", async function() {
@@ -40,7 +42,7 @@ test("The database gets edited correctly", async function() {
     expect(/* TODO: Make comparison */).toBe();
 })
 
-// --- DELETE operations
+// --- DELETE operations --- 
 
 // Check deletion works properly
 test("The database can delete rows", async function () {
