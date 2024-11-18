@@ -1,26 +1,28 @@
 const express = require("express"); // Using express
 const { Item } = require("../models/Item.js"); // Import the Item model from /models/Item.js
-
 const router = express.Router();
+
 router.use(express.json());
 
 // Define your routes here
 
-// GET all items in inventory
-router.get("/", async (req, res) => {
+// CREATE - Add a new item
+router.post("/items", async (req, res) => {
+  const { name, description, price, category, image } = req.body;
   try {
-    // Ideally, fetch all items from the database
-    res.status(200).json({
-      message: "Fetched all items",
-      items: [], // Empty for now, will be replaced with DB data
+    const newItem = await Item.create({
+      name,
+      description,
+      price,
+      category,
+      image,
     });
+    res.status(201).json(newItem);
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: "Failed to fetch items", message: error.message }); // Error message
+    console.error(error);
+    res.status(500).json({ error: "Failed to create item" });
   }
 });
-
 // GET a single item by ID
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
