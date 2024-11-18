@@ -1,11 +1,8 @@
-const express = require("express"); // Using express
-const { Item } = require("../models/Item.js"); // Import the Item model from /models/Item.js
-const e = require("express");
+const express = require("express");
+const Item = require("../models/Item.js"); // Import the Item model from /models/Item.js
 const router = express.Router();
 
 router.use(express.json());
-
-// Define your routes here
 
 // CREATE - Add a new item
 router.post("/items", async (req, res) => {
@@ -76,7 +73,8 @@ router.put("/items/:id", async (req, res) => {
 });
 
 // DELETE - delete an item by ID
-router.delete("items/:id", async (req, res) => {
+router.delete("/items/:id", async (req, res) => {
+  // <-- Fixed here
   const { id } = req.params;
   try {
     const item = await Item.findByPk(id);
