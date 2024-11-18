@@ -1,5 +1,6 @@
 const express = require("express"); // Using express
 const { Item } = require("../models/Item.js"); // Import the Item model from /models/Item.js
+const e = require("express");
 const router = express.Router();
 
 router.use(express.json());
@@ -35,4 +36,18 @@ router.get("/items", async (req, res) => {
   }
 });
 
+// READ - Get a single item by ID
+router.get("/items/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const item = await Item.findByPk(id);
+    if (!item) {
+      return res.status(404).json({ error: "Item not found" });
+    }
+    res.status(200).json(item);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to retrieve item" });
+  }
+});
 module.exports = router;
