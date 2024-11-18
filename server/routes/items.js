@@ -1,12 +1,12 @@
-const express = require("express");
-const { Item } = require("../models");
+const express = require("express"); // Using express
+const { Item } = require("../models/Item.js"); // Import the Item model from /models/Item.js
 
 const router = express.Router();
 router.use(express.json());
 
 // Define your routes here
 
-// Get all items in inventory
+// GET all items in inventory
 router.get("/", async (req, res) => {
   try {
     // Ideally, fetch all items from the database
@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Get a single item by ID
+// GET a single item by ID
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -37,7 +37,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// Create a new item
+// CREATE a new item
 router.post("/", async (req, res) => {
   const { name, description, price, quantity } = req.body;
   try {
