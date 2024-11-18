@@ -15,7 +15,7 @@ Item.init(
       allowNull: false,
     },
     //category: // TODO: Sort through table
-    category: DataTypes.STRING,
+    category: DataTypes.TEXT,
     image: DataTypes.TEXT,
   },
   {
