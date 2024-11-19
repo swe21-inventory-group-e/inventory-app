@@ -1,4 +1,4 @@
-import react from "react";
+import React from "react";
 
 // Layout component to include the common header and footer
 function Layout({ children }) {

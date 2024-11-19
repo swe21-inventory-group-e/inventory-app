@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../components/layout"; // Import the Layout component
+import AddPage from "../components/AddPage.js"; // Import the AddPage component
 import { fetchItems } from "../api/items"; // Import the fetchItems function
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
   const [items, setItems] = useState([]);
