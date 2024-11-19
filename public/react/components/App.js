@@ -35,6 +35,13 @@ function App() {
             <div className="pricetag">Price: $15.99</div>
             
           </div></div>
+          <div className='bottom-of-site'>
+
+            <button>Add page</button>
+            <button>Remove page</button>
+            <button>edit</button>
+            
+             </div>
     </>
   );
 }

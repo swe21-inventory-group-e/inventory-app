@@ -118,8 +118,9 @@ button{
   box-shadow: 8px 8px 0px #000; /* 3D shadow effect */
   transition: transform 0.2s, box-shadow 0.2s; /* Smooth transition for transform and shadow */
   cursor: pointer; /* Pointer cursor on hover */
-
+  margin: 10px; /* Add margin to create space between buttons */
 }
+
 button:hover {
   transform: translate(-4px, -4px); /* Slight movement on hover */
   box-shadow: 12px 12px 0px #000; /* Enhanced shadow on hover */
@@ -127,4 +128,8 @@ button:hover {
 .buttons{
   display:flex;
   justify-self: end;
+}
+.bottom-of-site{
+  display: flex;
+  justify-content: center;
 }
