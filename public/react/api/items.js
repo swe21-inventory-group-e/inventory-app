@@ -1,5 +1,5 @@
 import axios from "axios";
-import apiURL from "./api"; // Import apiURL to point to the correct backend
+import apiURL from "../api.js"; // Import apiURL to point to the correct backend
 
 // Fetch all items from the API
 export const fetchItems = async () => {
