@@ -2,7 +2,7 @@
   "name": "inventoryapp",
   "version": "2.0.1",
   "scripts": {
-    "test": "jest",
+    "test": "node server/seed.js && jest",
     "client-dev": "parcel public/index.html --open",
     "server-dev": "nodemon server.js",
     "seed": "node server/seed.js",
@@ -29,6 +29,7 @@
     "jest": "^27.1.0",
     "nodemon": "^3.1.7",
     "parcel": "^2.8.3",
-    "react-test-renderer": "^18.2.0"
+    "react-test-renderer": "^18.2.0",
+    "supertest": "^7.0.0"
   }
 }
