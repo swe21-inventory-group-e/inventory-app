@@ -74,6 +74,10 @@ describe("GET /api/items/:id", function() {
         expect(parsed.description).toBe(comparison.description);
         expect(parsed.id).toBe(comparison.id);
     })
+    test("returns 404 for items that don't exist", async function () {
+        const response = await request(app).get(apiUrl + "999");
+        expect(response.status).toBe(404);
+    })
 })
 
 // --- UPDATE operations ---
@@ -100,6 +104,11 @@ describe("PUT /api/items/:id", function() {
         expect(secondParsed.name).toBe(testItem.name);
         expect(secondParsed.description).toBe(firstParsed.description);
     })
+    test("returns 404 for items that don't exit", async function () {
+        const testItem = {name: "Another one"};
+        const response = await request(app).put(apiUrl + "999").send(testItem);
+        expect(response.status).toBe(404);
+    })
 })
 
 // --- DELETE operations ---
@@ -116,5 +125,9 @@ describe("DELETE /api/items/:id", function () {
         const response = await request(app).delete(apiUrl + createdItem.id);
         const item = await Item.findByPk(createdItem.id)
         expect(item).toBeNull();
+    })
+    test("returns 404 for items that don't exit", async function () {
+        const response = await request(app).delete(apiUrl + "999")
+        expect(response.status).toBe(404);
     })
 })
