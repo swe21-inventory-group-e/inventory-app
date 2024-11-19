@@ -75,3 +75,29 @@ describe("GET /api/items/:id", function() {
         expect(parsed.id).toBe(comparison.id);
     })
 })
+
+// --- UPDATE operations ---
+
+describe("PUT /api/items/1", function() {
+    const apiUrl = "/api/items/1";
+    test("returns 200", async function () {
+        const testItem = {name: "Another one"};
+        const response = await request(app).put(apiUrl).send(testItem);
+        expect(response.status).toBe(200);
+    })
+    test("updates item", async function () {
+        const testItem = {name: "Another two"};
+        const response = await request(app).put(apiUrl).send(testItem);
+        const parsed = await JSON.parse(response.text);
+        expect(parsed.name).toBe(testItem.name);
+    })
+    test("doesn't update values not sent", async function() {
+        const testItem = {name: "Another three"};
+        const firstReponse = await request(app).get(apiUrl);
+        const firstParsed = await JSON.parse(firstReponse.text)
+        const secondResponse = await request(app).put(apiUrl).send(testItem);
+        const secondParsed = await JSON.parse(secondResponse.text);
+        expect(secondParsed.name).toBe(testItem.name);
+        expect(secondParsed.description).toBe(firstParsed.description);
+    })
+})
