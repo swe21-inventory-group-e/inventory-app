@@ -78,7 +78,7 @@ describe("GET /api/items/:id", function() {
 
 // --- UPDATE operations ---
 
-describe("PUT /api/items/1", function() {
+describe("PUT /api/items/:id", function() {
     const apiUrl = "/api/items/1";
     test("returns 200", async function () {
         const testItem = {name: "Another one"};
@@ -99,5 +99,22 @@ describe("PUT /api/items/1", function() {
         const secondParsed = await JSON.parse(secondResponse.text);
         expect(secondParsed.name).toBe(testItem.name);
         expect(secondParsed.description).toBe(firstParsed.description);
+    })
+})
+
+// --- DELETE operations ---
+
+describe("DELETE /api/items/:id", function () {
+    const apiUrl = "/api/items/";
+    test("returns 200", async function() {
+        const createdItem = await Item.create({name: "Test item", price: 0});
+        const response = await request(app).delete(apiUrl + createdItem.id)
+        expect(response.status).toBe(200);
+    })
+    test("deletes from database", async function() {
+        const createdItem = await Item.create({name: "Test item", price: 0});
+        const response = await request(app).delete(apiUrl + createdItem.id);
+        const item = await Item.findByPk(createdItem.id)
+        expect(item).toBeNull();
     })
 })
