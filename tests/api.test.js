@@ -6,6 +6,32 @@ const app = require("../server/app.js");
 
 // apiUrl is the base local variable for holding the URL being tested;
 
+// --- CREATE operations ---
+
+describe("POST /api/items", function () {
+    const apiUrl = "/api/items";
+    const testItem = {
+        name: "Red MINI One",
+        description: "98BHP, the British icon",
+        price: 6000,
+        category: "cars",
+        image: "https://hinkley.dev/wp-content/uploads/2024/10/maya_no_metadata-scaled.jpg"
+    }
+    test("returns 201", async function() {
+        const response = await request(app).post(apiUrl).send(testItem);
+        expect(response.status).toBe(201);
+    })
+    test("creates item properly", async function() {
+        const response = await request(app).post(apiUrl).send(testItem);
+        const parsed = await JSON.parse(response.text);
+        expect(parsed.name).toBe(testItem.name);
+        expect(parsed.description).toBe(testItem.description);
+        expect(parsed.price).toBe(testItem.price);
+        expect(parsed.category).toBe(testItem.category);
+        expect(parsed.image).toBe(testItem.image);
+    })
+})
+
 // --- READ operations ---
 
 describe("GET /api/items", function () {
