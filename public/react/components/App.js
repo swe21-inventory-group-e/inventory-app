@@ -41,13 +41,10 @@ function App() {
                 <p>Price: ${item.price}</p>
                 <p>Category: {item.category}</p>
                 <img src={item.image} alt={item.name} />
+                <button className="buy-button">Buy Now</button>
               </li>
             ))}
           </ul>
-        </div>
-        <div className="bottom-row">
-          <button className="buy-button">Buy Now</button>
-          <div className="pricetag">Price: $15.99</div>
         </div>
       </div>
       <div className="bottom-of-site">
