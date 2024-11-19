@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  ;
 }
 
 body {
@@ -7,10 +8,123 @@ body {
   max-width: 70em;
   margin: 1em auto;
   line-height: 1.5;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: "archivo";
+  background-color:#ff8922;
+
+}
+h1{
+  font-family: "Bowlby One";
+  font-weight: bold;
+}
+h2{
+  font-weight: bold;
+  font-family:monospace;
+  font-size:x-large;
+
+}
+img {
+  display: block;
+  max-width: 40%;
+  height: auto;
+  border-color: black;
+  border-style: solid;
+  border-radius: 25px;
+  border:20px, solid black;
+}
+p{
+  margin:20px;
+  background-color:#f4efde;
+  border:3px solid black;
+  border-radius: 8px;
+
+}
+.item{
+  display: inline-block;
+  background-color: #fbf2c4;
+  border: 2px solid #000;
+  border-radius: 10px;
+  padding-left: 20px;
+  margin: 20px;
+  box-shadow: 5px 5px 0px #000;
+  transition: transform 0.2s, box-shadow 0.3s;
 }
 
-img {
-  max-width: 100%;
+.item:hover {
+  transform: translate(0px, 0px);
+  box-shadow: 11px 11px 0px #000;
+}
+.bottom-row{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:20px;
+}
+.buy-button{
+  font-size: 25px;
+  border:2px solid black;
+  border-radius: 2px;
+  box-shadow: 4px 4px 0px #000;
+  background-color:#f4efde;
+  transition: transform 0.4s, box-shadow 0.3s; /* Use transition instead of transform */
+}
+.buy-button:hover{
+  transform: scale(1.05);
+  box-shadow: 5px 5px 0px #000;
+}
+.pricetag{
+  font-family: 'archivo';
+  display: inline-block;
+  font-weight: bold;
+  font-size: larger;
+  border-style: dotted;
+  background-color: #6ce422;
+}
+.websitebanner{
+  display: flex;
+  justify-self: start;
+  justify-content: space-between;
+  border:4px solid black;
+  border-radius: 4px;
+  box-shadow: 10px 10px 0px #000;
+  background-color:#f4efde;
+}
+.description_and_image{
+  display: flex;
+  margin-top: 10px;
+
+}
+.window-header {
+  display:flex;
+  justify-content: space-between;
+  background-color: #a3c7db; /* Dark background for header */
+  color: #fff; /* White text color */
+  padding: 3px; /* Padding inside the header */
+  border-bottom: 4px solid #000; /* Thick bottom border */
+  border-radius: 6px 6px 0 0; /* Rounded top corners */
+  font-size: 1.5em; /* Larger font size for header */
+  margin-left: -20px;
+  padding-left:15px;
+  padding-right:15px;
+
+}
+button{
+  font-size: 20px;
+  font-weight: bold;
+  color: #000; /* Black text color */
+  background-color: #f4efde; /* Light background color */
+  border: 4px solid #000; /* Thick solid border */
+  border-radius: 4px; /* Slightly rounded corners */
+  padding: 10px 20px; /* Padding inside the button */
+  box-shadow: 8px 8px 0px #000; /* 3D shadow effect */
+  transition: transform 0.2s, box-shadow 0.2s; /* Smooth transition for transform and shadow */
+  cursor: pointer; /* Pointer cursor on hover */
+
+}
+button:hover {
+  transform: translate(-4px, -4px); /* Slight movement on hover */
+  box-shadow: 12px 12px 0px #000; /* Enhanced shadow on hover */
+}
+.buttons{
+  display:flex;
+  justify-self: end;
 }
