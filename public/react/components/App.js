@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
+import Layout from "../components/layout"; // Import the Layout component
 import { fetchItems } from "../api/items"; // Import the fetchItems function
-
-// Prepend the API URL to any fetch calls.
-import apiURL from "../api";
 
 function App() {
   const [items, setItems] = useState([]);
@@ -11,7 +9,7 @@ function App() {
   useEffect(() => {
     // Fetch the items
     const getItems = async () => {
-      const data = await fetchItems(); //Get the items from the API
+      const data = await fetchItems(); // Get the items from the API
       setItems(data); // Update the state with the fetched items
     };
 
@@ -19,14 +17,14 @@ function App() {
   }, []); // Empty dependency array makes sure this only runs once on mount
 
   return (
-    <>
-      <div class="websitebanner">
+    <Layout>
+      {/* <div className="websitebanner">
         <h1>Marketplace</h1>
         <div className="buttons">
           <button>Mens</button>
-          <button>electronics</button>
+          <button>Electronics</button>
         </div>
-      </div>
+      </div> */}
       <div className="item">
         <div className="window-header">
           <h2>Mens Casual Slim Fit</h2>
@@ -47,12 +45,8 @@ function App() {
           </ul>
         </div>
       </div>
-      <div className="bottom-of-site">
-        <button>Add page</button>
-        <button>Remove page</button>
-        <button>edit</button>
-      </div>
-    </>
+    </Layout>
   );
 }
+
 export default App;
