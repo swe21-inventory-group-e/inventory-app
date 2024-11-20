@@ -4,8 +4,8 @@ import React from "react";
 function Layout({ children }) {
   return (
     <div className="layout">
-      <header className="header">
-        <h1>Marketplace</h1>
+      <header className="websitebanner">
+        <h1>shopy</h1>
         <div className="buttons">
           <button>Mens</button>
           <button>Electronics</button>
