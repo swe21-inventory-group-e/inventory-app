@@ -28,20 +28,15 @@ export const updateItem = async (id, itemData) => {
 // Delete an item by ID
 export async function deleteItem(itemId) {
   try {
-    console.log("Deleting item with ID:", itemId); // Log the item ID
     const response = await fetch(`${apiURL}/items/${itemId}`, {
       method: "DELETE",
     });
-
     if (!response.ok) {
       throw new Error(`Failed to delete item: ${response.statusText}`);
     }
-
-    const data = await response.json();
-    console.log("Delete response data:", data); // Log the API response
-    return data;
+    return await response.json();
   } catch (error) {
-    console.error("Error in deleteItem:", error); // Log any errors
-    return { error: error.message }; // Ensure it always returns an object
+    console.error("Error in deleteItem:", error);
+    return { error: error.message };
   }
 }

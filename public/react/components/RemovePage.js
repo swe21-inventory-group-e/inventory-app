@@ -13,13 +13,11 @@ function RemovePage({ goback, setItems }) {
     };
     fetchData();
   }, []);
-
   // Handle item removal
   async function handleRemove(itemId) {
     try {
       const response = await deleteItem(itemId);
       console.log("Response from deleteItem:", response); // Log the response
-
       if (response.error) {
         alert(response.error); // Display the error message if any
       } else {
@@ -33,7 +31,6 @@ function RemovePage({ goback, setItems }) {
       alert("Failed to remove item. Please try again.");
     }
   }
-
   return (
     <Layout>
       <div className="remove-page">
@@ -57,5 +54,4 @@ function RemovePage({ goback, setItems }) {
     </Layout>
   );
 }
-
 export default RemovePage;
