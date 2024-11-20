@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import AddPage from "./AddPage";
 
 // Layout component to include the common header and footer
-function Layout({ children }) {
+function Layout({ children, setItems }) {
   const [page, setPage] = useState("index")
 
   if(page == "index") {
@@ -27,7 +27,7 @@ function Layout({ children }) {
     );
   }
   else if (page == "edit") {
-    return (<AddPage />)
+    return (<AddPage goback={() => setPage("index")} setItems={setItems} />)
   }
 }
 export default Layout;
