@@ -12,11 +12,12 @@ function App() {
       const data = await fetchItems(); // Get the items from the API
       setItems(data); // Update the state with the fetched items
     };
+
     getItems();
   }, []); // Empty dependency array makes sure this only runs once on mount
 
   return (
-    <Layout setItems={setItems}>
+    <Layout>
       <div className="items-container">
         {items.map((item) => (
           <div key={item.id} className="item-card">
