@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../components/layout";
 import { fetchItems, deleteItem } from "../api/items";
+import apiURL from "../api";
 
 function RemovePage({ goback, setItems }) {
   const [items, setLocalItems] = useState([]);
@@ -13,24 +14,26 @@ function RemovePage({ goback, setItems }) {
     };
     fetchData();
   }, []);
+
   // Handle item removal
-  async function handleRemove(itemId) {
+  const handleRemove = async (itemId) => {
     try {
-      const response = await deleteItem(itemId);
-      console.log("Response from deleteItem:", response); // Log the response
-      if (response.error) {
-        alert(response.error); // Display the error message if any
+      const response = await fetch(`${apiURL}/items/${itemId}`, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        // On successful deletion, update the state to remove the item
+        setLocalItems(items.filter((item) => item.id !== itemId)); // Remove item from state
+        setItems(items.filter((item) => item.id !== itemId)); // Update parent component's state as well (if needed)
+        alert("Item removed successfully!");
       } else {
-        alert("Item removed!");
-        const updatedItems = await fetchItems(); // Re-fetch the items
-        setItems(updatedItems); // Update the global state
-        setLocalItems(updatedItems); // Update the local state
+        alert("Failed to remove item");
       }
     } catch (err) {
-      console.error("Error in handleRemove:", err); // Log unexpected errors
-      alert("Failed to remove item. Please try again.");
+      alert("Error occurred while removing item");
+      console.error(err);
     }
-  }
+  };
   return (
     <Layout>
       <div className="remove-page">
@@ -54,4 +57,5 @@ function RemovePage({ goback, setItems }) {
     </Layout>
   );
 }
+
 export default RemovePage;
