@@ -26,6 +26,17 @@ export const updateItem = async (id, itemData) => {
 };
 
 // Delete an item by ID
-export const deleteItem = async (id) => {
-  await axios.delete(`${apiURL}/items/${id}`); // No need to return anything
-};
+export async function deleteItem(itemId) {
+  try {
+    const response = await fetch(`${apiURL}/items/${itemId}`, {
+      method: "DELETE",
+    });
+    if (!response.ok) {
+      throw new Error(`Failed to delete item: ${response.statusText}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error in deleteItem:", error);
+    return { error: error.message };
+  }
+}
