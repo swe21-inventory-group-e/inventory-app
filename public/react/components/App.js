@@ -15,7 +15,6 @@ function App() {
     getItems();
   }, []); // Empty dependency array makes sure this only runs once on mount
 
-// --------------------------------------------------------------------------------------------------
 
   const handleClick = async (id) => {
     try {
@@ -23,25 +22,37 @@ function App() {
       if(response.error) {
         throw new Error("Not successful");
       }
-      console.log(items)
+      // console.log(items)
       setItems(response);
-      alert("Fetched successfully"); // Using 'alert(msg)' indicates if code behaving as expected
+      // alert("Fetched successfully"); // Using 'alert(msg)' indicates if code behaving as expected
     } catch (error) {
       console.error("Error fetching item", error);
-      alert("Failed to fetch item");
+      // alert("Failed to fetch item");
     }
    };
-
-// --------------------------------------------------------------------------------------------------
 
   if (!Array.isArray(items)) {
     return (<Layout>
       <p onClick={getItems}>Go back</p>
       {items.name}
       {/* Can you make this page nice? Cheers! - Azz */}
+      <div key={items.id} className="item-card" onClick={() => handleClick(items.id)}>
+            <div className="window-header">
+              <h2>{items.name}</h2>
+            </div>
+            <div className="description_and_image">
+              <img src={items.image} alt={items.name} />
+              <div className="item-info">
+                <p>{items.description}</p>
+                <p>Price: ${items.price}</p>
+                <p>Category: {items.category}</p>
+                <button className="buy-button">Buy Now</button>
+              </div>
+            </div>
+          </div>
     </Layout>)
   }
-
+  
   return (
     <Layout setItems={setItems}>
       <div className="items-container">
