@@ -19,7 +19,7 @@ function EditPage({ page, goback, setItems }) {
   }
   return (
     <Layout>
-      <div className="add-page">
+      <div className="edit-page">
         <button onClick={goback}>Go back</button>
         <h2>Add New Item</h2>
         <Form submit={editpage} />
