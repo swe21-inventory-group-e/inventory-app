@@ -10,10 +10,10 @@ export const fetchItems = async () => {
 // Fetch a single item by ID
 export const fetchItemById = async (id) => {
   const response = await axios.get(`${apiURL}/items/${id}`);
-  if (!response.ok) {
+  if (response.status != 200) {
     throw new Error("Failed to fetch item");
   }
-  return await response.json();
+  return response.data;
 };
 
 // Create a new item
