@@ -5,13 +5,13 @@ import { fetchItems, fetchItemById } from "../api/items"; // Import the fetchIte
 function App() {
   const [items, setItems] = useState([]);
 
+  // Fetch the items
+  const getItems = async () => {
+    const data = await fetchItems(); // Get the items from the API
+    setItems(data); // Update the state with the fetched items
+  };
   // Fetch items when the component is mounted
   useEffect(() => {
-    // Fetch the items
-    const getItems = async () => {
-      const data = await fetchItems(); // Get the items from the API
-      setItems(data); // Update the state with the fetched items
-    };
     getItems();
   }, []); // Empty dependency array makes sure this only runs once on mount
 
@@ -20,12 +20,11 @@ function App() {
   const handleClick = async (id) => {
     try {
       const response = await fetchItemById(id); // is the error due to the 'map()'???
-      if(!response.ok) {
+      if(response.error) {
         throw new Error("Not successful");
       }
-      const data = await response.json();
-      // console.log(data);
-      setItems([data]);
+      console.log(items)
+      setItems(response);
       alert("Fetched successfully"); // Using 'alert(msg)' indicates if code behaving as expected
     } catch (error) {
       console.error("Error fetching item", error);
@@ -34,6 +33,14 @@ function App() {
    };
 
 // --------------------------------------------------------------------------------------------------
+
+  if (!Array.isArray(items)) {
+    return (<Layout>
+      <p onClick={getItems}>Go back</p>
+      {items.name}
+      {/* Can you make this page nice? Cheers! - Azz */}
+    </Layout>)
+  }
 
   return (
     <Layout setItems={setItems}>
