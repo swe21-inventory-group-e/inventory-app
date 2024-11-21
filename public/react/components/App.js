@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../components/layout"; // Import the Layout component
-import { fetchItems } from "../api/items"; // Import the fetchItems function
+import { fetchItems, fetchItemById } from "../api/items"; // Import the fetchItems function
 
 function App() {
   const [items, setItems] = useState([]);
@@ -15,11 +15,31 @@ function App() {
     getItems();
   }, []); // Empty dependency array makes sure this only runs once on mount
 
+// --------------------------------------------------------------------------------------------------
+
+  const handleClick = async (id) => {
+    try {
+      const response = await fetchItemById(id); // is the error due to the 'map()'???
+      if(!response.ok) {
+        throw new Error("Not successful");
+      }
+      const data = await response.json();
+      // console.log(data);
+      setItems([data]);
+      alert("Fetched successfully"); // Using 'alert(msg)' indicates if code behaving as expected
+    } catch (error) {
+      console.error("Error fetching item", error);
+      alert("Failed to fetch item");
+    }
+   };
+
+// --------------------------------------------------------------------------------------------------
+
   return (
     <Layout setItems={setItems}>
       <div className="items-container">
         {items.map((item) => (
-          <div key={item.id} className="item-card">
+          <div key={item.id} className="item-card" onClick={() => handleClick(item.id)}>
             <div className="window-header">
               <h2>{item.name}</h2>
             </div>
