@@ -22,7 +22,7 @@ function EditPage({ page, goback, setItems }) {
       <div className="edit-page">
         <button onClick={goback}>Go back</button>
         <h2>Edit Item</h2>
-        <Form submit={editpage} page={page} />
+        <Form submit={editpage} name={page.name} description={page.description} price={page.price} category={page.category} image={page.image} />
       </div>
     </Layout>
   );

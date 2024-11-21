@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
 function Form(props) {
-  const [name, setName] = useState(props.page.name || "");
-  const [description, setDescription] = useState(props.page.description || "");
-  const [price, setPrice] = useState(props.page.price || 0);
-  const [category, setCategory] = useState(props.page.category || "");
-  const [image, setImage] = useState(props.page.image || "");
+  const [name, setName] = useState(props.name || "");
+  const [description, setDescription] = useState(props.description || "");
+  const [price, setPrice] = useState(props.price || 0);
+  const [category, setCategory] = useState(props.category || "");
+  const [image, setImage] = useState(props.image || "");
 
   return (
     <form

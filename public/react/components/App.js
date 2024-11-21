@@ -35,7 +35,7 @@ function App() {
 
   if (!Array.isArray(items)) {
     if (editor) {
-      return (<EditPage page={items}  goback={() => setEditor(false)} setItems={setItems}/>)
+      return (<EditPage page={items} goback={() => setEditor(false)} setItems={setItems}/>)
     }
     else {
       return (<Layout>
