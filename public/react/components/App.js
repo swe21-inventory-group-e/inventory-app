@@ -16,7 +16,7 @@ function App() {
   }, []); // Empty dependency array makes sure this only runs once on mount
 
   return (
-    <Layout setItems={setItems}>
+    <Layout setItems={setItems} items={items}>
       <div className="items-container">
         {items.map((item) => (
           <div key={item.id} className="item-card">

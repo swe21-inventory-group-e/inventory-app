@@ -3,8 +3,9 @@ import AddPage from "./AddPage";
 import RemovePage from "./RemovePage"; // Import RemovePage
 
 function Layout({ children, setItems }) {
-  const [page, setPage] = useState("index");
+  const [page, setPage] = useState("index"); // Default page is "index"
 
+  // Conditional rendering based on the page state
   if (page === "index") {
     return (
       <div className="layout">
@@ -17,9 +18,10 @@ function Layout({ children, setItems }) {
         </header>
         <main className="main-content">{children}</main>
         <footer className="bottom-of-site">
+          {/* Page control buttons */}
           <button onClick={() => setPage("edit")}>Add page</button>
           <button onClick={() => setPage("remove")}>Remove page</button>
-          <button>Edit</button>
+          <button onClick={() => setPage("edit2")}>Edit</button>
         </footer>
       </div>
     );
@@ -27,6 +29,8 @@ function Layout({ children, setItems }) {
     return <AddPage goback={() => setPage("index")} setItems={setItems} />;
   } else if (page === "remove") {
     return <RemovePage goback={() => setPage("index")} setItems={setItems} />;
+  } else if (page === "edit2") {
+    return <EditPage goback={() => setPage("index")} setItems={setItems} />;
   }
 }
 
