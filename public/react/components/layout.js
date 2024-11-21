@@ -31,5 +31,4 @@ function Layout({ children, setItems }) {
     return <RemovePage goback={() => setPage("index")} setItems={setItems} />;
   } 
 }
-
 export default Layout;
