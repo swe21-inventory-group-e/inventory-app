@@ -6,10 +6,10 @@ import Form from "./Form.js";
 function EditPage({ page, goback, setItems }) {
   async function editpage(e, pageData) {
     e.preventDefault();
-    const item = Object.assign({id: page.id}, pageData)
+    Object.assign(pageData, {id: page.id})
     const response = await updateItem(pageData);
     if (response.error == undefined) {
-        alert("Item created!");
+        alert("Item updated!");
         const newItems = await fetchItems();
         setItems(newItems);
         goback();
@@ -21,8 +21,8 @@ function EditPage({ page, goback, setItems }) {
     <Layout>
       <div className="edit-page">
         <button onClick={goback}>Go back</button>
-        <h2>Add New Item</h2>
-        <Form submit={editpage} />
+        <h2>Edit Item</h2>
+        <Form submit={editpage} page={page} />
       </div>
     </Layout>
   );

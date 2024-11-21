@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../components/layout"; // Import the Layout component
 import { fetchItems, fetchItemById } from "../api/items"; // Import the fetchItems function
+import EditPage from "./EditPage";
 
 function App() {
   const [items, setItems] = useState([]);
+  const [editor, setEditor] = useState(false);
 
   // Fetch the items
   const getItems = async () => {
@@ -32,25 +34,31 @@ function App() {
    };
 
   if (!Array.isArray(items)) {
-    return (<Layout>
-      <p onClick={getItems}>Go back</p>
-      {items.name}
-      {/* Can you make this page nice? Cheers! - Azz */}
-      <div key={items.id} className="item-card" onClick={() => handleClick(items.id)}>
-            <div className="window-header">
-              <h2>{items.name}</h2>
-            </div>
-            <div className="description_and_image">
-              <img src={items.image} alt={items.name} />
-              <div className="item-info">
-                <p>{items.description}</p>
-                <p>Price: ${items.price}</p>
-                <p>Category: {items.category}</p>
-                <button className="buy-button">Buy Now</button>
+    if (editor) {
+      return (<EditPage page={items}  goback={() => setEditor(false)} setItems={setItems}/>)
+    }
+    else {
+      return (<Layout>
+        <p onClick={getItems}>Go back</p>
+        {items.name}
+        {/* Can you make this page nice? Cheers! - Azz */}
+        <div key={items.id} className="item-card" onClick={() => handleClick(items.id)}>
+              <div className="window-header">
+                <h2>{items.name}</h2>
+              </div>
+              <div className="description_and_image">
+                <img src={items.image} alt={items.name} />
+                <div className="item-info">
+                  <p>{items.description}</p>
+                  <p>Price: ${items.price}</p>
+                  <p>Category: {items.category}</p>
+                  <button className="buy-button">Buy Now</button>
+                  <button className="edit-button" onClick={() => setEditor(true)}>Edit</button>
+                </div>
               </div>
             </div>
-          </div>
-    </Layout>)
+      </Layout>)
+      }
   }
   
   return (
