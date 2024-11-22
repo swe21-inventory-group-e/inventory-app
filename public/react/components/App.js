@@ -73,12 +73,11 @@ function App() {
               <img src={item.image} alt={item.name} />
               <div className="item-info">
                 <p>{item.description}</p>
-                <p>Price: ${item.price}</p>
-                <p>Category: {item.category}</p>
+              </div>
+                <div className="pricetag">Price: ${item.price}</div>
                 <button className="buy-button">Buy Now</button>
               </div>
             </div>
-          </div>
         ))}
       </div>
     </Layout>
