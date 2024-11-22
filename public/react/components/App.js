@@ -39,8 +39,7 @@ function App() {
     }
     else {
       return (<Layout>
-        <p onClick={getItems}>Go back</p>
-        {items.name}
+        <button onClick={getItems}>Go back</button>
         {/* Can you make this page nice? Cheers! - Azz */}
         <div key={items.id} className="item-card" onClick={() => handleClick(items.id)}>
               <div className="window-header">

@@ -13,8 +13,6 @@ function Layout({ children, setItems }) {
         <header className="header">
           <h1>Marketplace</h1>
           <div className="buttons">
-            <button>Mens</button>
-            <button>Electronics</button>
           </div>
         </header>
         <main className="main-content">{children}</main>
